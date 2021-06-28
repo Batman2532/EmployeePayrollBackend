@@ -1,5 +1,5 @@
 const model = require('../models/model');
-const userService = require('../service/user.service')
+const userService = require('../service/user')
 
 class User {
     registerUser(req,res){

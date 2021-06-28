@@ -1,3 +1,18 @@
-module.exports = {
-    url: 'mongodb://localhost:27017/employee-payroll'
+const mongoose = require('mongoose');
+require('dotenv').config();
+module.exports = () =>{
+    mongoose.Promise = global.Promise;
+
+    // Connecting to the database
+mongoose.connect(process.env.MONGODB, {
+    useNewUrlParser: true
+    }).then(() => {
+        console.log("Successfully connected to the database");    
+    }).catch(err => {
+        console.log('Could not connect to the database. Exiting now...', err);
+        process.exit();
+    });
+
+return mongoose.connection;
+
 }

@@ -1,6 +1,6 @@
 module.exports = (app) => {
     const empPayroll = require('../controllers/controller');
-    const user = require('../controllers/user.controller')
+    const user = require('../controllers/user')
     //Create a new User
     app.post('/registerUser', user.registerUser);
 

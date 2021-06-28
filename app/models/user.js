@@ -28,5 +28,4 @@ class UsersModule{
             })
         }
 }
-
 module.exports = new UsersModule()
