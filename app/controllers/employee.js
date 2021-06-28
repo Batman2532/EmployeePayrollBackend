@@ -1,4 +1,4 @@
-const empService = require('../service/service')
+const empService = require('../service/employee')
 
 class EmpController{
 

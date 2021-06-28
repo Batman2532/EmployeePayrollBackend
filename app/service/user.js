@@ -2,13 +2,17 @@ const userModel = require('../models/user')
 
 class userService{
     registerUser(userData,callBack){
-        userModel.registerUser(userData,(error,data)=>{
-            if(error){
-                callBack(error,null)
-            }else{
-                callBack(null,data)
-            }
-        })
+        try {
+            userModel.registerUser(userData,(error,data)=>{
+                if(error){
+                    callBack(error,null)
+                }else{
+                    callBack(null,data)
+                }
+            })
+        } catch (error) {
+            callBack(error,null)
+        }
     }
 }
 

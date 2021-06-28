@@ -12,20 +12,35 @@ const UserModel = mongoose.model('User', UserSchema);
 
 class UsersModule{
         registerUser(userData,callBack){
-            const user = new UserModel({
-                firstName : userData.firstName,
-                lastName : userData.lastName,
-                email : userData.email,
-                password : userData.password
-            });
-            
-            user.save({},(error,data)=>{
-                if(error){
-                    callBack(error,null)
-                }else{
-                    callBack(null,data)
-                }
-            })
-        }
+            try {
+                const user = new UserModel({
+                    firstName : userData.firstName,
+                    lastName : userData.lastName,
+                    email : userData.email,
+                    password : userData.password
+                });
+
+                UserModel.findOne({email: user.email},(error,data)=>{
+                    if(error){
+                        callBack(error,null)
+                    }else if(data == null){
+                        user.save({},(error,data)=>{
+                            if(error){
+                                let errorValue = "Some error occurred while creating User";
+                                callBack(errorValue,null)
+                            }else{
+                                callBack(null,data)
+                            }
+                        })
+                    }else{
+                        let error = "This email alresdy exists"
+                        callBack(error,null)
+                    }
+                })
+               
+            } catch (error) {
+                callBack(error,null)
+            }
+    }
 }
 module.exports = new UsersModule()

@@ -1,4 +1,4 @@
-const empModel = require("../models/model")
+const empModel = require("../models/employee")
 
 class EmpService{
     createEmployee (empData,callBack) {
