@@ -1,4 +1,3 @@
-const model = require('../models/employee');
 const userService = require('../service/user')
 const {userSchema} = require('../middlewares/userValidation')
 
@@ -29,6 +28,28 @@ class User {
             return res.send({message:error})
         }
         
+    }
+
+    loginUser(req,res){
+        try {
+            const loginDetails = {
+                email: req.body.email,
+                password: req.body.password
+            }    
+            userService.loginUser(loginDetails,(error,data)=>{
+                if(error){
+                    res.status(500).send({
+                        success: false, message: error
+                    });
+                }else{
+                    res.status(200).send({
+                        success: true, message: "User login successfully!", data: data
+                    });
+                }
+            })
+        } catch (error) {
+            return res.send({message:error})
+        }
     }
 }
 

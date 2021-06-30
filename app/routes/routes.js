@@ -4,6 +4,9 @@ module.exports = (app) => {
     //Create a new User
     app.post('/registerUser', user.registerUser);
 
+    //User Login
+    app.post('/login',user.loginUser);
+
     // Create a new Employee
     app.post('/empPayroll', empPayroll.createEmployee);
 
