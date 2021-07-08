@@ -1,3 +1,18 @@
+/**********************************************************************************************************
+ *  Execution    : 1. Default node with npm   cmd> npm server.js
+ *
+ * Purpose      : controller handles request and responses of  user login & registartion
+ *
+ * @description  :modules need to be required before execution of this file 
+ *
+ * @file        : controller/users.controller.js
+ * @overview    : Handles requests coming from clients to login & register 
+ * @module      : neccessary part (controller) of MVC Model of employee Payroll API
+ * @author      : Saurabh
+ * @version     : 1.0
+ * @since       : 8-07-2021
+ **********************************************************************************************************/
+
 const userService = require('../service/user')
 const {userSchema} = require('../middlewares/userValidation')
 
@@ -33,8 +48,7 @@ class User {
         }
         } catch (error) {
             return res.send({message:error})
-        }
-        
+        } 
     }
 
     loginUser(req,res){

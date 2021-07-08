@@ -1,3 +1,17 @@
+/**********************************************************************************************************
+ *  Execution    : 1. Default node with npm   cmd> npm server.js
+                  
+ * Purpose      : define user schema for database , use mongoose methods to perform db operations 
+ *
+ * @description  :modules need to be required before execution of this file  
+ *
+ * @file        : models/user.js
+ * @overview    : Provides schema for database and performs mongoose CRUD operations
+ * @module      : neccessary to define user schema for database ,define functions accessed by services layer  
+ * @author      : Saurabh
+ * @version     : 1.0
+ * @since       : 8-07-2021
+ **********************************************************************************************************/
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt')
 
@@ -24,9 +38,35 @@ const UserSchema = mongoose.Schema({
 }, {
     timestamps: true
 });
+
+//encrypt password using hashing before saving in database
+UserSchema.pre("save", function (next) {
+    const user = this;
+
+    bcrypt.hash(this.password, 10, (error, hashedPassword) => {
+        if (error) {
+            return next(error);
+        }
+        user.password = hashedPassword;
+        next();
+    });
+});
+
+//comparing passwords for the authentication
+UserSchema.methods.comparePassword = (userPassword, callback) => {
+    bcrypt.compare(userPassword, this.password, (error, matched) => {
+        return error ? callback(error, null) : callback(null, matched);
+    });
+};
+
 const UserModel = mongoose.model('User', UserSchema);
 
 class UsersModule{
+    /**
+     * @description registerUser method is to save the new User Data in database
+        * @param userdData is data sent from Services layer
+        * @return callBack is used to callback Services includes error message or data
+     */
         registerUser(userData,callBack){
             try {
                 const user = new UserModel({
@@ -58,6 +98,12 @@ class UsersModule{
                 callBack(error,null)
             }
     }
+
+    /**
+     *  @description Get the user data by emailID
+     * @param  loginDetails having emailId and password
+     * @returns callBack is used to callback Services with data or error message
+     */
 
     loginUser(loginDetails,callBack){
         try {

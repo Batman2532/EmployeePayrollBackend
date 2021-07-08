@@ -1,3 +1,17 @@
+/**********************************************************************************************************
+ *  Execution    : 1. Default node with npm   cmd> npm server.js
+ *
+ * Purpose      : user input request validation for registration
+ *
+ * @description  :joi package need to be installed & required before execution of this file 
+ *
+ * @file        : middlewares/userValidation.js
+ * @overview    : validates the user data send as request to server 
+ * @module      : validates input request against pre-defined object schema since users can send anything 
+ * @author      : Saurabh
+ * @version     : 1.0
+ * @since       : 8-07-2021
+ **********************************************************************************************************/
 const joi = require('joi');
 
 const userSchema = joi.object({

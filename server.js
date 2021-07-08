@@ -1,3 +1,18 @@
+/**********************************************************************************************************
+ *  Execution    : 1. Default node with npm   cmd> npm server.js
+                
+ * Purpose      : entry point for the program where express app is created
+ *
+ * @description  :Dependencies require to be installed before execution of this file 
+ *
+ * @file        : server.js
+ * @overview    : Create web application using express,Set up the server,connect to database,define routes
+ * @module      : starting point to run the employee Payroll API
+ * @author      : Saurabh
+ * @version     : 1.0
+ * @since       : 8-07-2021
+ **********************************************************************************************************/
+
 const express = require('express');
 const dbConfig = require('./config/config.js');
 require('dotenv').config();
