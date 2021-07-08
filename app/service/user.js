@@ -20,8 +20,12 @@ class userService{
             userModel.loginUser(loginDetails,(error,data)=>{
                 if(error){
                     callBack(error,null)
-                }else{
+                }
+                if(data.password==loginDetails.password){
                     callBack(null,data)
+                }
+                else{
+                    callBack(error,null)
                 }
             })
         } catch (error) {

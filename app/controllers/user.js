@@ -5,17 +5,24 @@ class User {
 
     registerUser(req,res){
         try {
-            const result = userSchema.validate(req.body)
+            const userData = {
+                firstName : req.body.firstName,
+                lastName : req.body.lastName,
+                email : req.body.email,
+                password : req.body.password
+            }
+
+            const result = userSchema.validate(userData)
         if(result.error){
             res.status(422).send({
                 success: false, message: result.error.details[0].message
             })
         }
         else{
-            userService.registerUser(req.body,(error,data)=>{
+            userService.registerUser(userData,(error,data)=>{
                 if(error){
                     res.status(500).send({
-                        success: false, message: error
+                        success: false, message: "...."
                     });
                 }else{
                     res.status(200).send({
@@ -39,7 +46,7 @@ class User {
             userService.loginUser(loginDetails,(error,data)=>{
                 if(error){
                     res.status(500).send({
-                        success: false, message: error
+                        success: false, message: "Please enter correct user credentials"
                     });
                 }else{
                     res.status(200).send({

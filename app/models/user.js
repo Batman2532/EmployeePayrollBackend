@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt')
 
 const UserSchema = mongoose.Schema({
     firstName: {
@@ -19,7 +20,6 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        validate: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/
     }
 }, {
     timestamps: true
@@ -67,13 +67,10 @@ class UsersModule{
                     callBack(error,null)
                 }
                 if(!data){
-                    callBack("User not found please enter valid credential",null)
-                }
-                if(data.password==loginDetails.password){
-                    callBack(null,data)
+                    callBack(error,null)
                 }
                 else{
-                    callBack("Please enter valid password",null)
+                    callBack(null,data)
                 }
             })
         } catch (error) {
