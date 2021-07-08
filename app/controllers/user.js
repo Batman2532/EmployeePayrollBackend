@@ -64,7 +64,7 @@ class User {
                     });
                 }else{
                     res.status(200).send({
-                        success: true, message: "User login successfully!", data: data
+                        success: true, message: "User login successfully!", token: data
                     });
                 }
             })

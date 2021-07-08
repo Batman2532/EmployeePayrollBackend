@@ -37,7 +37,13 @@ class userService{
                     callBack(error,null)
                 }
                 if(helper.checkPassword(loginDetails.password,data.password)){
-                    callBack(null,data)
+                    const token = helper.generateToken(loginDetails)
+                    if(token){
+                        callBack(null,token)
+                    }
+                    else(
+                        callBack(error,null)
+                    )
                 }else{
                     callBack(error,null)
                 }

@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 class Helper{
 
@@ -7,6 +9,14 @@ class Helper{
             return true
         }else{
             return false
+        }
+    }
+
+    generateToken(userData){
+        try {
+            return jwt.sign(userData, process.env.KEY);
+        } catch (error) {
+            
         }
     }
 }
