@@ -35,16 +35,16 @@ class User {
         }
         else{
             userService.registerUser(userData,(error,data)=>{
-                if(error){
+                error ?
                     res.status(500).send({
                         success: false, message: "Some error occurred while registering user"
-                    });
-                }else{
+                    })
+                :
                     res.status(200).send({
                         success: true, message: "User created successfully!", data: data
                     });
                 }
-            })
+            )
         }
         } catch (error) {
             return res.send({message:error})
@@ -58,16 +58,16 @@ class User {
                 password: req.body.password
             }    
             userService.loginUser(loginDetails,(error,data)=>{
-                if(error){
+                error ? 
                     res.status(500).send({
                         success: false, message: "Please enter correct user credentials"
-                    });
-                }else{
+                    })
+                :
                     res.status(200).send({
                         success: true, message: "User login successfully!", token: data
                     });
                 }
-            })
+                )
         } catch (error) {
             return res.send({message:error})
         }

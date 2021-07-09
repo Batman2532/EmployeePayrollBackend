@@ -81,13 +81,9 @@ class UsersModule{
                         return callBack(error,null)
                     }else if(data == null){
                         user.save({},(error,data)=>{
-                            if(error){
-                                let error = "Some error occurred while creating User";
-                                return callBack(error,null)
-                            }else{
-                                return callBack(null,data)
+                            return (error) ? callBack(error,null) : callBack(null,data)
                             }
-                        })
+                        )
                     }else{
                         let error = "This email alresdy exists"
                         return callBack(error,null)
@@ -111,13 +107,9 @@ class UsersModule{
                 if(error){
                     return callBack(error,null)
                 }
-                if(!data){
-                    return callBack(error,null)
+                return (data == null) ? callBack(error,null) : callBack(null,data)
                 }
-                else{
-                    return callBack(null,data)
-                }
-            })
+            )
         } catch (error) {
             return callBack(error,null)
         }

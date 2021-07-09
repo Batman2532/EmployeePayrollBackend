@@ -19,11 +19,7 @@ class userService{
     registerUser(userData,callBack){
         try {
             userModel.registerUser(userData,(error,data)=>{
-                if(error){
-                    return callBack(error,null)
-                }else{
-                    return callBack(null,data)
-                }
+                return (error) ? callBack(error,null) : callBack(null,data)
             })
         } catch (error) {
             return callBack(error,null)
