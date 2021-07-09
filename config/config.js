@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
+const logger = require('./logger')
 module.exports = () =>{
     mongoose.Promise = global.Promise;
 
@@ -11,6 +12,7 @@ mongoose.connect(process.env.MONGODB, {
         console.log("Successfully connected to the database");    
     }).catch(err => {
         console.log('Could not connect to the database. Exiting now...', err);
+        logger.error('Problem connecting to database !');
         process.exit();
     });
 

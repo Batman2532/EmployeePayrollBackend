@@ -78,24 +78,24 @@ class UsersModule{
 
                 UserModel.findOne({email: user.email},(error,data)=>{
                     if(error){
-                        callBack(error,null)
+                        return callBack(error,null)
                     }else if(data == null){
                         user.save({},(error,data)=>{
                             if(error){
                                 let error = "Some error occurred while creating User";
-                                callBack(error,null)
+                                return callBack(error,null)
                             }else{
-                                callBack(null,data)
+                                return callBack(null,data)
                             }
                         })
                     }else{
                         let error = "This email alresdy exists"
-                        callBack(error,null)
+                        return callBack(error,null)
                     }
                 })
                
             } catch (error) {
-                callBack(error,null)
+                return callBack(error,null)
             }
     }
 
@@ -109,13 +109,13 @@ class UsersModule{
         try {
             UserModel.findOne({email: loginDetails.email},(error,data)=>{
                 if(error){
-                   callBack(error,null)
+                    return callBack(error,null)
                 }
                 if(!data){
-                    callBack(error,null)
+                    return callBack(error,null)
                 }
                 else{
-                  callBack(null,data)
+                    return callBack(null,data)
                 }
             })
         } catch (error) {

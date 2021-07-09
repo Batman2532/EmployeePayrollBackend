@@ -1,10 +1,15 @@
-const { transports,createLogger,format } = require('winston')
+const { transports,createLogger,format, transport } = require('winston')
 
 const logger = createLogger({
     'transports':[
         new transports.File({
-            filename:'/home/saurabh/CFP/EmployeePayroll/log/info.log',
+            filename:'log/info.log',
             level:'info',
+            format:format.combine(format.timestamp(),format.json())
+        }),
+        new transports.File({
+            filename:'log/error.log',
+            level:'error',
             format:format.combine(format.timestamp(),format.json())
         })
     ]

@@ -20,13 +20,13 @@ class userService{
         try {
             userModel.registerUser(userData,(error,data)=>{
                 if(error){
-                    callBack(error,null)
+                    return callBack(error,null)
                 }else{
-                    callBack(null,data)
+                    return callBack(null,data)
                 }
             })
         } catch (error) {
-            callBack(error,null)
+            return callBack(error,null)
         }
     }
 
@@ -34,23 +34,21 @@ class userService{
         try {
             userModel.loginUser(loginDetails,(error,data)=>{
                 if(error){
-                    callBack(error,null)
+                    return callBack(error,null)
                 }
                 if(helper.checkPassword(loginDetails.password,data.password)){
                     const token = helper.generateToken(loginDetails)
                     if(token){
-                        callBack(null,token)
+                        return callBack(null,token)
                     }
-                    else(
-                        callBack(error,null)
-                    )
+                    return callBack(error,null)
                 }else{
-                    callBack(error,null)
+                    return callBack(error,null)
                 }
                 
             })
         } catch (error) {
-            callBack(error,null)
+            return callBack(error,null)
         }
     }
 }

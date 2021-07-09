@@ -17,7 +17,7 @@ module.exports = (app) => {
     const empPayroll = require('../controllers/employee');
     const user = require('../controllers/user')
     const swaggerUi = require('swagger-ui-express');
-    const swaggerDocument = require('/home/saurabh/CFP/EmployeePayroll/swagger/swagger.json');
+    const swaggerDocument = require('../../swagger/swagger.json');
 
     app.use('/api-docs', swaggerUi.serve);
     app.get('/api-docs', swaggerUi.setup(swaggerDocument));
