@@ -37,7 +37,7 @@ class User {
             userService.registerUser(userData,(error,data)=>{
                 if(error){
                     res.status(500).send({
-                        success: false, message: "...."
+                        success: false, message: "Some error occurred while registering user"
                     });
                 }else{
                     res.status(200).send({

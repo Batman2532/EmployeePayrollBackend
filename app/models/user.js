@@ -52,12 +52,12 @@ UserSchema.pre("save", function (next) {
     });
 });
 
-//comparing passwords for the authentication
-UserSchema.methods.comparePassword = (userPassword, callback) => {
-    bcrypt.compare(userPassword, this.password, (error, matched) => {
-        return error ? callback(error, null) : callback(null, matched);
-    });
-};
+// //comparing passwords for the authentication
+// UserSchema.methods.comparePassword = (userPassword, callback) => {
+//     bcrypt.compare(userPassword, this.password, (error, matched) => {
+//         return error ? callback(error, null) : callback(null, matched);
+//     });
+// };
 
 const UserModel = mongoose.model('User', UserSchema);
 
@@ -107,16 +107,15 @@ class UsersModule{
 
     loginUser(loginDetails,callBack){
         try {
-        
             UserModel.findOne({email: loginDetails.email},(error,data)=>{
                 if(error){
-                    callBack(error,null)
+                   callBack(error,null)
                 }
                 if(!data){
                     callBack(error,null)
                 }
                 else{
-                    callBack(null,data)
+                  callBack(null,data)
                 }
             })
         } catch (error) {
