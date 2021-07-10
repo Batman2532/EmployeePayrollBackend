@@ -16,6 +16,15 @@ const falseData = {
     email : 'charjan15@gmail.com',
     password : 'Batman532'
 }
+const userLogin = {
+    email : 'batman4@gmail.com',
+    password : 'Batman@2532'
+}
+const falseLogin = {
+    email : 'batman@gmail.com',
+    password : 'Batman2532'
+}
+
 
 
 describe('POST /registerUser',()=>{
@@ -46,6 +55,31 @@ describe('POST /registerUser',()=>{
         chai.request(server)
             .post('/registerUser')
             .send(userData)
+            .end((error,res)=>{
+                res.should.have.status(500);
+                res.body.should.have.property('success').eq(false);
+            done();
+            });
+    });
+});
+
+describe('POST /login',()=>{
+    it('should return 200 responce on successfull user login',(done)=>{
+        chai.request(server)
+            .post('/login')
+            .send(userLogin)
+            .end((error,res)=>{
+                res.should.have.status(200);
+                res.body.should.have.property('success').eq(true);
+                res.body.should.have.property('token');
+            done();
+            });
+    });
+
+    it('should return 500 responce on failed user login',(done)=>{
+        chai.request(server)
+            .post('/login')
+            .send(falseLogin)
             .end((error,res)=>{
                 res.should.have.status(500);
                 res.body.should.have.property('success').eq(false);

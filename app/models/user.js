@@ -107,7 +107,7 @@ class UsersModule{
                 if(error){
                     return callBack(error,null)
                 }
-                return (data == null) ? callBack(error,null) : callBack(null,data)
+                return (data == null) ? callBack('user not found',null) : callBack(null,data)
                 }
             )
         } catch (error) {
