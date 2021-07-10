@@ -1,0 +1,55 @@
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+let server = require('../server');
+chai.should();
+chai.use(chaiHttp);
+
+const userData = {
+    firstName : 'Saurabh',
+    lastName : 'Charjan',
+    email : 'charjan15@gmail.com',
+    password : 'Batman@2532'
+}
+const falseData = {
+    firstName : 'Saurabh',
+    lastName : 'Charjan',
+    email : 'charjan15@gmail.com',
+    password : 'Batman532'
+}
+
+
+describe('POST /registerUser',()=>{
+    it('should return 200 responce on successfull user registration',(done)=>{
+        chai.request(server)
+            .post('/registerUser')
+            .send(userData)
+            .end((error,res)=>{
+                res.should.have.status(200);
+                res.body.should.have.property('success').eq(true);
+                res.body.should.have.property('data');
+            done();
+            });
+    });
+
+    it('should return 422 responce on invalid user details',(done)=>{
+        chai.request(server)
+            .post('/registerUser')
+            .send(falseData)
+            .end((error,res)=>{
+                res.should.have.status(422);
+                res.body.should.have.property('success').eq(false);
+            done();
+            });
+    });
+
+    it('should return 500 responce on duplicate mail address',(done)=>{
+        chai.request(server)
+            .post('/registerUser')
+            .send(userData)
+            .end((error,res)=>{
+                res.should.have.status(500);
+                res.body.should.have.property('success').eq(false);
+            done();
+            });
+    });
+});
