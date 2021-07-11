@@ -15,6 +15,7 @@
 
 const userService = require('../service/user')
 const {userSchema} = require('../middlewares/userValidation')
+const { employeeSchema } = require('../middlewares/employeeValidation')
 
 class User {
 

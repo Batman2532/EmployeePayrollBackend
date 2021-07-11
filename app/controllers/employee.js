@@ -1,4 +1,5 @@
 const empService = require('../service/employee')
+const {employeeSchema} = require('../middlewares/employeeValidation')
 
 class EmpController{
 
@@ -9,6 +10,13 @@ class EmpController{
             email : req.body.email,
             password : req.body.password
         }  
+        const result = employeeSchema.validate(empData)
+        if(result.error){
+            res.status(422).send({
+                success: false, message: result.error.details[0].message
+            })
+        }
+        else{
         empService.createEmployee(empData,(error,data)=>{
             if(error){
                 res.status(500).send({
@@ -20,6 +28,7 @@ class EmpController{
                 });
             }
         })
+    }
     }
 
     getEmployeesInfo (req,res){

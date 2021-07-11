@@ -1,10 +1,25 @@
 const mongoose = require('mongoose');
 
 const EmployeeSchema = mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    email: String,
-    password: String
+    firstName: {
+        type: String,
+        required: true,
+        validate: /^[a-zA-Z]{3,15}$/
+    },
+    lastName: {
+        type: String,
+        required: true,
+        validate: /^[a-zA-Z]{3,15}$/
+    },
+    email: {
+        type: String,
+        validate: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+[.]+[a-zA-Z]+$/,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true,
+    }
 }, {
     timestamps: true
 });
