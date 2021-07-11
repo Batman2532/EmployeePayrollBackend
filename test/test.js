@@ -1,5 +1,6 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
+const { deleteById } = require('../app/models/employee');
 let server = require('../server');
 chai.should();
 chai.use(chaiHttp);
@@ -76,12 +77,12 @@ describe('POST /login',()=>{
             });
     });
 
-    it('should return 500 responce on failed user login',(done)=>{
+    it('should return 404 responce on failed user login',(done)=>{
         chai.request(server)
             .post('/login')
             .send(falseLogin)
             .end((error,res)=>{
-                res.should.have.status(500);
+                res.should.have.status(404);
                 res.body.should.have.property('success').eq(false);
             done();
             });

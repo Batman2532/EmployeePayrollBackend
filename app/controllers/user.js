@@ -59,7 +59,7 @@ class User {
             }    
             userService.loginUser(loginDetails,(error,data)=>{
                 error ? 
-                    res.status(500).send({
+                    res.status(404).send({
                         success: false, message: "Please enter correct user credentials"
                     })
                 :

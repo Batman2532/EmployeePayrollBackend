@@ -33,5 +33,26 @@ class Helper{
             
         }
     }
+
+    authenticateToken(req,res,next){
+        const token = req.headers.authorization;
+        if(token){
+            jwt.verify(token.split(" ")[1],process.env.KEY,(error)=>{
+                if(error){
+                    return res.status(402).send({
+                        success: false,
+                        message: 'Token is not valid' 
+                    })
+                }else{
+                    next()
+                }
+            })
+        }else{
+            return res.status(401).send({
+                success: false,
+                message: 'user not found'
+            })
+        }
+    }
 }
 module.exports = new Helper();

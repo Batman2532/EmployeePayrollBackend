@@ -18,6 +18,7 @@ module.exports = (app) => {
     const user = require('../controllers/user')
     const swaggerUi = require('swagger-ui-express');
     const swaggerDocument = require('../../swagger/swagger.json');
+    const helper =  require('../middlewares/helper')
 
     app.use('/api-docs', swaggerUi.serve);
     app.get('/api-docs', swaggerUi.setup(swaggerDocument));
@@ -29,17 +30,17 @@ module.exports = (app) => {
     app.post('/login',user.loginUser);
 
     // Create a new Employee
-    app.post('/empPayroll', empPayroll.createEmployee);
+    app.post('/empPayroll', helper.authenticateToken,empPayroll.createEmployee);
 
     // Retrieve all Empployee
-    app.get('/empPayroll', empPayroll.getEmployeesInfo);
+    app.get('/empPayroll', helper.authenticateToken ,empPayroll.getEmployeesInfo);
 
     // Retrieve a single Employee with employeeId
-    app.get('/empPayroll/:employeeId', empPayroll.getEmployeeByID);
+    app.get('/empPayroll/:employeeId', helper.authenticateToken ,empPayroll.getEmployeeByID);
 
     // Update a Employee with employeeId
-    app.put('/empPayroll/:employeeId', empPayroll.updateById);
+    app.put('/empPayroll/:employeeId', helper.authenticateToken ,empPayroll.updateById);
 
     // Delete a Employee with employeeId
-    app.delete('/empPayroll/:employeeId', empPayroll.deleteById);
+    app.delete('/empPayroll/:employeeId', helper.authenticateToken ,empPayroll.deleteById);
 }
