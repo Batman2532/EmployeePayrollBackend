@@ -33,14 +33,14 @@ module.exports = (app) => {
     app.post('/empPayroll', helper.authenticateToken,empPayroll.createEmployee);
 
     // Retrieve all Empployee
-    app.get('/empPayroll', helper.authenticateToken ,empPayroll.getEmployeesInfo);
+    app.get('/getEmpPayroll', helper.authenticateToken ,empPayroll.getEmployeesInfo);
 
     // Retrieve a single Employee with employeeId
-    app.get('/empPayroll/:employeeId', helper.authenticateToken ,empPayroll.getEmployeeByID);
+    app.get('/getEmpPayrollByID/:employeeId', helper.authenticateToken ,empPayroll.getEmployeeByID);
 
     // Update a Employee with employeeId
-    app.put('/empPayroll/:employeeId', helper.authenticateToken ,empPayroll.updateById);
+    app.put('/updateEmpPayroll/:employeeId', helper.authenticateToken ,empPayroll.updateById);
 
     // Delete a Employee with employeeId
-    app.delete('/empPayroll/:employeeId', helper.authenticateToken ,empPayroll.deleteById);
+    app.delete('/deleteEmpPayroll/:employeeId', helper.authenticateToken ,empPayroll.deleteById);
 }

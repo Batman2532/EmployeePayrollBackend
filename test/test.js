@@ -1,6 +1,5 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-const { deleteById } = require('../app/models/employee');
 let server = require('../server');
 chai.should();
 chai.use(chaiHttp);
@@ -8,7 +7,7 @@ chai.use(chaiHttp);
 const userData = {
     firstName : 'Saurabh',
     lastName : 'Charjan',
-    email : 'charjan15@gmail.com',
+    email : 'charja5@gmail.com',
     password : 'Batman@2532'
 }
 const falseData = {

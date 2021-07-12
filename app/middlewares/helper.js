@@ -35,16 +35,16 @@ class Helper{
     }
 
     authenticateToken(req,res,next){
-        const token = req.headers.authorization;
+        let token = req.get("token");
         if(token){
-            jwt.verify(token.split(" ")[1],process.env.KEY,(error)=>{
+            jwt.verify(token,process.env.KEY,(error)=>{
                 if(error){
                     return res.status(402).send({
                         success: false,
-                        message: 'Token is not valid' 
+                        message: 'Token is not valid', 
                     })
                 }else{
-                    next()
+                    next();
                 }
             })
         }else{
