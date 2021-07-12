@@ -35,31 +35,28 @@ class EmployeesModel{
             password : empData.password
         });
         empInfo.save({},(error,data)=>{
-            if(error){
+            error?
                 callBack(error,null)
-            }else{
+            :
                 callBack(null,data)
-            }
         })
     }
 
     getEmployeesInfo(callBack){
         EmployeeModel.find({},(error,data)=>{
-            if(error){
+            error?
                 callBack(error,null)
-            }else{
+            :
                 callBack(null,data)
-            }
         })
     }
 
     getEmployeeByID(empId,callBack){
         EmployeeModel.findById(empId.employeeId,(error,data)=>{
-            if(error){
+            error?
                 callBack(error,null)
-            }else{
+            :
                 callBack(null,data)
-            }
         })
     }
 
@@ -70,21 +67,19 @@ class EmployeesModel{
             email : empData.email,
             password : empData.password
         },{new : true},(error,data)=>{
-            if(error){
+            error?
                 callBack(error,null)
-            }else{
+            :
                 callBack(null,data)
-            }
         });
     }
 
     deleteById(empId,callBack){
         EmployeeModel.findByIdAndDelete(empId.employeeId,(error,data)=>{
-            if(error){
+            error?
                 callBack(error,null)
-            }else{
+            :
                 callBack(null,data)
-            }
         })
     }
 }
