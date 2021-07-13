@@ -52,7 +52,6 @@ describe('POST /login',()=>{
                 res.should.have.status(200);
                 res.body.should.have.property('success').eq(true);
                 res.body.should.have.property('token');
-                token = res.body.token;
             done();
             });
     });
@@ -68,6 +67,18 @@ describe('POST /login',()=>{
             });
     });
 });
+
+beforeEach((done) => {
+    chai.request(server)
+        .post('/login')
+        .send(testData.userLogin)
+        .end((err, res) => {
+            res.should.have.status(200);
+            token = res.body.token;
+            done();
+        });
+});
+
 
 describe('POST /empPayroll',()=>{
     it('should return 200 status code on successful storing data',(done)=>{
