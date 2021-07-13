@@ -5,7 +5,7 @@
  *
  * @description  :modules need to be required before execution of this file 
  *
- * @file        : controller/users.controller.js
+ * @file        : controller/users.js
  * @overview    : Handles requests coming from clients to login & register 
  * @module      : neccessary part (controller) of MVC Model of employee Payroll API
  * @author      : Saurabh

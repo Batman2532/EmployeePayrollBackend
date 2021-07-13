@@ -1,3 +1,18 @@
+/**********************************************************************************************************
+ *  Execution    : 1. Default node with npm   cmd> npm server.js
+ *
+ * Purpose      : controller handles request and responses of crud operation
+ *
+ * @description  :modules need to be required before execution of this file 
+ *
+ * @file        : controller/employee.js
+ * @overview    : Handles requests coming from clients for crud operations 
+ * @module      : neccessary part (controller) of MVC Model of employee Payroll API
+ * @author      : Saurabh
+ * @version     : 1.0
+ * @since       : 8-07-2021
+ **********************************************************************************************************/
+
 const empService = require('../service/employee')
 const {employeeSchema} = require('../middlewares/employeeValidation')
 

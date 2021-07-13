@@ -1,4 +1,19 @@
+/**********************************************************************************************************
+ *  Execution    : 1. Default node with npm   cmd> npm server.js
+                  
+ * Purpose      : define user schema for database , use mongoose methods to perform db operations 
+ *
+ * @description  :modules need to be required before execution of this file  
+ *
+ * @file        : models/employee.js
+ * @overview    : Provides schema for database and performs mongoose CRUD operations
+ * @module      : neccessary to define user schema for database ,define functions accessed by services layer  
+ * @author      : Saurabh
+ * @version     : 1.0
+ * @since       : 8-07-2021
+ **********************************************************************************************************/
 const mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
 
 const EmployeeSchema = mongoose.Schema({
     firstName: {

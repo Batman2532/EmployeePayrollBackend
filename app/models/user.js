@@ -52,13 +52,6 @@ UserSchema.pre("save", function (next) {
     });
 });
 
-// //comparing passwords for the authentication
-// UserSchema.methods.comparePassword = (userPassword, callback) => {
-//     bcrypt.compare(userPassword, this.password, (error, matched) => {
-//         return error ? callback(error, null) : callback(null, matched);
-//     });
-// };
-
 const UserModel = mongoose.model('User', UserSchema);
 
 class UsersModule{
