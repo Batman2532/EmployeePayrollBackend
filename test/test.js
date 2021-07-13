@@ -1,41 +1,17 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-const user = require('../app/models/user');
-const { use } = require('../server');
 let server = require('../server');
 chai.should();
 chai.use(chaiHttp);
+let testData = require('../test/testData.json');
 let token = '';
 let falseToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhdG1hbjJAZ21haWwuY29tIiwicGFzc3dvcmQiOiJCYXRtYW5AMjUzMiIsImlhdCI6MTYyNjE1MTA3MX0.6rkbk4P7WDklozsy3Fux-wSWtt3UyOyVa5'
-
-const userData = {
-    firstName : 'Saurabh',
-    lastName : 'Charjan',
-    email : 'charja5@gmail.com',
-    password : 'Batman@2532'
-}
-const falseData = {
-    firstName : 'Saurabh',
-    lastName : 'Charjan',
-    email : 'charjan15@gmail.com',
-    password : 'Batman532'
-}
-const userLogin = {
-    email : 'batman2@gmail.com',
-    password : 'Batman@2532'
-}
-const falseLogin = {
-    email : 'batman@gmail.com',
-    password : 'Batman2532'
-}
-
-
 
 describe('POST /registerUser',()=>{
     it('should return 200 responce on successfull user registration',(done)=>{
         chai.request(server)
             .post('/registerUser')
-            .send(userData)
+            .send(testData.userData)
             .end((error,res)=>{
                 res.should.have.status(200);
                 res.body.should.have.property('success').eq(true);
@@ -47,7 +23,7 @@ describe('POST /registerUser',()=>{
     it('should return 422 responce on invalid user details',(done)=>{
         chai.request(server)
             .post('/registerUser')
-            .send(falseData)
+            .send(testData.falseData)
             .end((error,res)=>{
                 res.should.have.status(422);
                 res.body.should.have.property('success').eq(false);
@@ -58,7 +34,7 @@ describe('POST /registerUser',()=>{
     it('should return 500 responce on duplicate mail address',(done)=>{
         chai.request(server)
             .post('/registerUser')
-            .send(userData)
+            .send(testData.userData)
             .end((error,res)=>{
                 res.should.have.status(500);
                 res.body.should.have.property('success').eq(false);
@@ -71,7 +47,7 @@ describe('POST /login',()=>{
     it('should return 200 responce on successfull user login',(done)=>{
         chai.request(server)
             .post('/login')
-            .send(userLogin)
+            .send(testData.userLogin)
             .end((error,res)=>{
                 res.should.have.status(200);
                 res.body.should.have.property('success').eq(true);
@@ -84,7 +60,7 @@ describe('POST /login',()=>{
     it('should return 404 responce on failed user login',(done)=>{
         chai.request(server)
             .post('/login')
-            .send(falseLogin)
+            .send(testData.falseLogin)
             .end((error,res)=>{
                 res.should.have.status(404);
                 res.body.should.have.property('success').eq(false);
@@ -97,7 +73,7 @@ describe('POST /empPayroll',()=>{
     it('should return 200 status code on successful storing data',(done)=>{
         chai.request(server)
             .post('/empPayroll')
-            .send(userData)
+            .send(testData.userData)
             .set('token',token)
             .end((error,res)=>{
                 res.should.have.status(200);
@@ -110,7 +86,7 @@ describe('POST /empPayroll',()=>{
     it('should return 422 status code on invalid employee details',(done)=>{
         chai.request(server)
             .post('/empPayroll')
-            .send(falseData)
+            .send(testData.falseData)
             .set('token',token)
             .end((error,res)=>{
                 res.should.have.status(422);
@@ -175,7 +151,7 @@ describe(' PUT by ID /updateEmpPayroll',()=>{
         let id = '60ed1e461d2bc78976dea7fb'
         chai.request(server)
             .put('/updateEmpPayroll/'+id)
-            .send(userData)
+            .send(testData.userData)
             .set('token',token)
             .end((error,res)=>{
                 res.should.have.status(200)
@@ -188,7 +164,7 @@ describe(' PUT by ID /updateEmpPayroll',()=>{
         let id = '60ed1e461d2bc78976dea7f'
         chai.request(server)
             .put('/updateEmpPayroll/'+id)
-            .send(userData)
+            .send(testData.userData)
             .set('token',token)
             .end((error,res)=>{
                 res.should.have.status(500)

@@ -1,0 +1,22 @@
+{
+    "userData" : {
+    "firstName" : "Saurabh",
+    "lastName" : "Charjan",
+    "email" : "charja5@gmail.com",
+    "password" : "Batman@2532"
+    },
+    "falseData" : {
+    "firstName" : "Saurabh",
+    "lastName" : "Charjan",
+    "email" : "charjan15@gmail.com",
+    "password" : "Batman532"
+    },
+    "userLogin" : {
+    "email" : "batman2@gmail.com",
+    "password" : "Batman@2532"
+    },
+    "falseLogin" : {
+    "email" : "batman@gmail.com",
+    "password" : "Batman2532"
+}
+}
