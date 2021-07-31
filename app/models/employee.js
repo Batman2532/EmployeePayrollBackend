@@ -31,9 +31,13 @@ const EmployeeSchema = mongoose.Schema({
         validate: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+[.]+[a-zA-Z]+$/,
         unique: true
     },
-    password: {
+    department: {
         type: String,
-        required: true,
+        required: true
+    },
+    salary:{
+        type: Number,
+        required: true
     }
 }, {
     timestamps: true
@@ -47,7 +51,8 @@ class EmployeesModel{
             firstName : empData.firstName,
             lastName :  empData.lastName,
             email : empData.email,
-            password : empData.password
+            department : empData.department,
+            salary : empData.salary
         });
         empInfo.save({},(error,data)=>{
             error?
@@ -80,7 +85,8 @@ class EmployeesModel{
             firstName : empData.firstName,
             lastName :  empData.lastName,
             email : empData.email,
-            password : empData.password
+            department : empData.department,
+            salary : empData.salary
         },{new : true},(error,data)=>{
             error?
                 callBack(error,null)

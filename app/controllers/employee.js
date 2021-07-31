@@ -23,7 +23,8 @@ class EmpController{
             firstName : req.body.firstName, 
             lastName : req.body.lastName,
             email : req.body.email,
-            password : req.body.password
+            department : req.body.department,
+            salary : req.body.salary
         }  
         const result = employeeSchema.validate(empData)
         result.error ?
@@ -58,7 +59,7 @@ class EmpController{
                 });
             
         });
-    }
+    } 
 
     getEmployeeByID(req,res){
         let empId = req.params;
@@ -81,7 +82,8 @@ class EmpController{
             firstName : req.body.firstName, 
             lastName : req.body.lastName,
             email : req.body.email,
-            password : req.body.password
+            department : req.body.department,
+            salary : req.body.salary
         }  
         empService.updateById(empId,empData,(error,data)=>{
             error?

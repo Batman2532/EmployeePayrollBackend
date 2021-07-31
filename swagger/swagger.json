@@ -78,7 +78,7 @@
               "in": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/User"
+                "$ref": "#/definitions/Employee"
               }
             }
           ],
@@ -176,7 +176,7 @@
               "in": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/User"
+                "$ref": "#/definitions/Employee"
               }
             }
           ],
@@ -274,6 +274,26 @@
           },
           "password": {
             "type": "string"
+          }
+        }
+      },
+      "Employee": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "emailId": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "salary": {
+            "type": "number"
           }
         }
       }

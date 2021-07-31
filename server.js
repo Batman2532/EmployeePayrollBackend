@@ -16,10 +16,13 @@
 const express = require('express');
 const dbConfig = require('./config/config.js');
 require('dotenv').config();
+const cors = require('cors');
+
 const logger = require('./config/logger')
 // create express app
 const app = express();
 
+app.use(cors());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
 

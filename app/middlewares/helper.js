@@ -35,7 +35,7 @@ class Helper{
     }
 
     authenticateToken(req,res,next){
-        let token = req.get("token");
+        let token = req.get('token');
         if(token){
             jwt.verify(token,process.env.KEY,(error)=>{
                 if(error){
