@@ -92,7 +92,7 @@ class EmpController{
                 })
             :
                 res.status(200).send({
-                    success: true, message: "Employee retrived successfully!", data: data
+                    success: true, message: "Employee updated successfully!", data: data
                 })
             
         });
