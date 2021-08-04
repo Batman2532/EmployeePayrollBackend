@@ -258,7 +258,7 @@
           "lastName": {
             "type": "string"
           },
-          "emailId": {
+          "email": {
             "type": "string"
           },
           "password": {
@@ -286,7 +286,7 @@
           "lastName": {
             "type": "string"
           },
-          "emailId": {
+          "email": {
             "type": "string"
           },
           "department": {
