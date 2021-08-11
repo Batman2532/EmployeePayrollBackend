@@ -14,15 +14,23 @@
  **********************************************************************************************************/
 const userModel = require('../models/user')
 const helper = require('../middlewares/helper')
+const logger = require('../../config/logger')
 
 class userService{
     registerUser(userData,callBack){
         try {
             userModel.registerUser(userData,(error,data)=>{
-                return (error) ? callBack(error,null) : callBack(null,data)
+                if(error) { 
+                    logger.error('Problem while register user !');
+                    return callBack(error,null) 
+                }else{
+                 return callBack(null,data)
+                }
             })
         } catch (error) {
+            logger.error('Problem while register user !');
             return callBack(error,null)
+            
         }
     }
 
@@ -30,6 +38,7 @@ class userService{
         try {
             userModel.loginUser(loginDetails,(error,data)=>{
                 if(error){
+                    logger.error('Problem while login user !');
                     return callBack(error,null)
                 }
             
@@ -40,11 +49,13 @@ class userService{
                     }
                     return callBack(error,null)
                 }else{
-                    return callBack(error,null)
+                    logger.error('Problem while login user !');
+                    return callBack(error,null)       
                 }
                 
             })
         } catch (error) {
+            logger.error('Problem while login user !');
             return callBack(error,null)
         }
     }
