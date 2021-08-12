@@ -24,6 +24,7 @@ class userService{
                     logger.error('Problem while register user !');
                     return callBack(error,null) 
                 }else{
+                    logger.info('User registered successfully');
                  return callBack(null,data)
                 }
             })
@@ -45,6 +46,7 @@ class userService{
                 if(helper.checkPassword(loginDetails.password,data.password)){
                     const token = helper.generateToken(loginDetails)
                     if(token){
+                        logger.error('User login successfully');
                         return callBack(null,token)
                     }
                     return callBack(error,null)
