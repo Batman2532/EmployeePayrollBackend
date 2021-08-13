@@ -22,7 +22,7 @@ class EmpService{
                 logger.error('Problem while creating employee !');
                 return callBack(error,null)
             }else{
-                logger.error('Employee created successfully');
+                logger.info('Employee created successfully');
                 return callBack(null,data)
             }
         })
@@ -34,7 +34,7 @@ class EmpService{
                 logger.error('Problem while getting employee !');
                 return callBack(error,null)
             }else{
-                logger.error('Employee retrives successfully');
+                logger.info('Employee retrives successfully');
                 return callBack(null,data)
             }
         })
@@ -46,7 +46,7 @@ class EmpService{
                 logger.error('Problem while getting employee !');
                 return callBack(error,null)
             }else{
-                logger.error('Employee retrived by id');
+                logger.info('Employee retrived by id');
                 return callBack(null,data)
             }
         })
@@ -58,7 +58,7 @@ class EmpService{
                 logger.error('Problem while updating employee !');
                 return callBack(error,null)
             }else{
-                logger.error('Employee updated successfully');
+                logger.info('Employee updated successfully');
                 return callBack(null,data)
             }
         })
@@ -70,7 +70,7 @@ class EmpService{
                 logger.error('Problem while deleting employee !');
                 return callBack(error,null)
             }else{
-                logger.error('Employee deleted successfully');
+                logger.info('Employee deleted successfully');
                 return callBack(null,data)
             }
         })

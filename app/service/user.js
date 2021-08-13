@@ -46,7 +46,7 @@ class userService{
                 if(helper.checkPassword(loginDetails.password,data.password)){
                     const token = helper.generateToken(loginDetails)
                     if(token){
-                        logger.error('User login successfully');
+                        logger.info('User login successfully');
                         return callBack(null,token)
                     }
                     return callBack(error,null)
